@@ -84,6 +84,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Main Menu" id="RtB-fq-CXO"/>
+                    <connections>
+                        <outlet property="numPlayer" destination="cTS-ye-EUH" id="urZ-nW-78Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
