@@ -9,7 +9,22 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-
+    
+    //player whose turn it is
+    var activePlayer = 1;
+    
+    //action for when each player places a piece
+    @IBAction func buttonPress(_ sender: AnyObject) {
+        if (activePlayer == 1) {
+            sender.setImage(UIImage(named: "o.png"),for:[])
+            activePlayer = 2;
+        }
+        else {
+            sender.setImage(UIImage(named: "x.png"),for:[])
+            activePlayer = 1;
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

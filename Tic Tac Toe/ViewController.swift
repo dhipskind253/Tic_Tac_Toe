@@ -7,9 +7,12 @@
 //
 
 import UIKit
+var numPlayers = 0;
 
 class ViewController: UIViewController {
     @IBOutlet weak var numPlayer: UISegmentedControl!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
