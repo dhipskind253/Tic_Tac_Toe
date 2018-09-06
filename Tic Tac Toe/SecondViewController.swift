@@ -9,25 +9,84 @@
 import UIKit
 
 class SecondViewController: UIViewController {
+    //variable to keep track of the board
+    //0 for empty, 1 for x, and 2 for o
+    var currBoard: [Int] = [0,0,0,0,0,0,0,0,0]
     
     //player whose turn it is
     var activePlayer = 1;
     
+    //Label to display winner
+    @IBOutlet weak var winLabel: UILabel!
+    
     //action for when each player places a piece
-    @IBAction func buttonPress(_ sender: AnyObject) {
-        if (activePlayer == 1) {
-            sender.setImage(UIImage(named: "o.png"),for:[])
-            activePlayer = 2;
+        @IBAction func buttonPress(_ sender: AnyObject) {
+            if (winLabel.text != " ") {
+                activePlayer = 3
+            }
+            
+            //Play against another person
+            if (numPlayers == 1) {
+                if (activePlayer == 1) {
+                    sender.setImage(UIImage(named: "o.png"),for:[])
+                    currBoard[sender.tag - 1] = 1
+                    winLabel.text = winCheck(player: activePlayer)
+                    activePlayer = 2;
+                }
+                else if (activePlayer == 2){
+                    sender.setImage(UIImage(named: "x.png"),for:[])
+                    currBoard[sender.tag - 1] = 2
+                    winLabel.text = winCheck(player: activePlayer)
+
+                    activePlayer = 1;
+                }
+            }
+            //Play against AI
+            else if (numPlayers == 2) {
+                if (activePlayer == 1) {
+                    sender.setImage(UIImage(named: "o.png"),for:[])
+                    currBoard[sender.tag - 1] = 2
+                    winLabel.text = winCheck(player: activePlayer)
+                    activePlayer = 2
+                    AImove()
+                    winLabel.text = winCheck(player: activePlayer)
+
+                }
+            }
         }
-        else {
-            sender.setImage(UIImage(named: "x.png"),for:[])
-            activePlayer = 1;
+    
+    //resets board
+    @IBAction func reset(_ sender: Any) {
+        currBoard = [0,0,0,0,0,0,0,0,0]
+        activePlayer = 1;
+        winLabel.text = " "
+        
+        for i in 1..<10 {
+            if let button = view.viewWithTag(i) as? UIButton {
+                button.setImage(nil, for:[])
+            }
         }
     }
     
+    //checks if either player has won the game
+    func winCheck(player: Int) -> String {
+        if (currBoard[0] == player && currBoard[1] == player && currBoard[2] == player) || (currBoard[3] == player && currBoard[4] == player && currBoard[5] == player) || (currBoard[6] == player && currBoard[7] == player && currBoard[8] == player) || (currBoard[0] == player && currBoard[3] == player && currBoard[6] == player) || (currBoard[1] == player && currBoard[4] == player && currBoard[7] == player) || (currBoard[2] == player && currBoard[5] == player && currBoard[8] == player) || (currBoard[0] == player && currBoard[4] == player && currBoard[8] == player) || (currBoard[2] == player && currBoard[4] == player && currBoard[6] == player) {
+            print(currBoard)
+            return "Player \(player) won the game!!"
+        }
+        else {
+            return " "
+        }
+    }
+    
+    //returns the index in the array where the AI wants to place a piece
+    func AImove() {
+        
+        activePlayer = 1
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
