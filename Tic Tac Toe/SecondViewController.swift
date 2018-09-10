@@ -107,10 +107,10 @@ class SecondViewController: UIViewController {
                     default: button0.setImage(UIImage(named: "x.png"), for:[])
                     }
                     currBoard[index] = 2
-                    if winCheck(board: currBoard, player: activePlayer) == 1 {
-                        winLabel.text = "Player \(activePlayer) won the game!!"
+                    if winCheck(board: currBoard, player: 2) == 1 {
+                        winLabel.text = "Player 2 won the game!!"
                     }
-                    else if winCheck(board: currBoard, player: activePlayer) == 2 {
+                    else if winCheck(board: currBoard, player: 2) == 2 {
                         winLabel.text = "It's a Draw!!"
                     }
                 }
@@ -177,55 +177,55 @@ class SecondViewController: UIViewController {
     //returns the index in the array where the AI wants to place a piece
     func AImove(board: [Int])->Int {
         // loop through available spots and check for instant win
-        for (index, value) in currBoard.enumerated() {
-            if value == 0 && checkWinMove(board: board, player: activePlayer, moveIndex: index) {
+        for i in 0..<currBoard.count {
+            if currBoard[i] == 0 && checkWinMove(board: board, player: activePlayer, moveIndex: i) {
                 activePlayer = 1
-                return index
+                return i
             }
         }
         //loop through and check for necesary blocks
-        for (index, value) in currBoard.enumerated() {
-            if value == 0 && checkWinMove(board: board, player: 1, moveIndex: index) {
+        for i in 0..<currBoard.count {
+            if currBoard[i] == 0 && checkWinMove(board: board, player: 1, moveIndex: i) {
                 activePlayer = 1
-                return index
+                return i
             }
         }
         //loop through for forks
-        for (index, value) in currBoard.enumerated() {
-            if value == 0 && forkMove(board: board, player: activePlayer, moveIndex: index) {
+        for i in 0..<currBoard.count {
+            if currBoard[i] == 0 && forkMove(board: board, player: activePlayer, moveIndex: i) {
                 activePlayer = 1
-                return index
+                return i
             }
         }
         //loop through for opponent forks
-        for (index, value) in currBoard.enumerated() {
-            if value == 0 && forkMove(board: board, player: 1, moveIndex: index) {
+        for i in 0..<currBoard.count {
+            if currBoard[i] == 0 && forkMove(board: board, player: 1, moveIndex: i) {
                 activePlayer = 1
-                return index
+                return i
             }
         }
         //then prioritize corners
-        for (index, value) in currBoard.enumerated() {
-            if index == 0 || index == 2 || index == 6 || index == 8 {
-                if value == 0 {
+        for i in 0..<currBoard.count {
+            if i == 0 || i == 2 || i == 6 || i == 8 {
+                if currBoard[i] == 0 {
                     activePlayer = 1
-                    return index
+                    return i
                 }
             }
         }
         //prioritze middle
-        for (index, value) in currBoard.enumerated() {
-            if index == 4 && value == 0 {
+        for i in 0..<currBoard.count {
+            if i == 4 && currBoard[i] == 0 {
                 activePlayer = 1
-                return index
+                return i
             }
         }
         //prioritize edges
-        for (index, value) in currBoard.enumerated() {
-            if index == 1 || index == 3 || index == 5 || index == 7 {
-                if value == 0 {
+        for i in 0..<currBoard.count {
+            if i == 1 || i == 3 || i == 5 || i == 7 {
+                if currBoard[i] == 0 {
                     activePlayer = 1
-                    return index
+                    return i
                 }
             }
         }
