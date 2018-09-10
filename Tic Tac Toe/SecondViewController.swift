@@ -57,61 +57,67 @@ class SecondViewController: UIViewController {
             //Play against another person
             if (numPlayers == 2) {
                 if (activePlayer == 1) {
-                    sender.setImage(UIImage(named: "o.png"),for:[])
-                    currBoard[sender.tag - 1] = 1
-                    if winCheck(board: currBoard, player: activePlayer) == 1 {
-                        winLabel.text = "Player \(activePlayer) won the game!!"
+                    if currBoard[sender.tag - 1] == 0 {
+                        sender.setImage(UIImage(named: "o.png"),for:[])
+                        currBoard[sender.tag - 1] = 1
+                        if winCheck(board: currBoard, player: activePlayer) == 1 {
+                            winLabel.text = "Player \(activePlayer) won the game!!"
+                        }
+                        else if winCheck(board: currBoard, player: activePlayer) == 2 {
+                            winLabel.text = "It's a Draw!!"
+                        }
+                        activePlayer = 2;
                     }
-                    else if winCheck(board: currBoard, player: activePlayer) == 2 {
-                        winLabel.text = "It's a Draw!!"
-                    }
-                    activePlayer = 2;
                 }
                 else if (activePlayer == 2){
-                    sender.setImage(UIImage(named: "x.png"),for:[])
-                    currBoard[sender.tag - 1] = 2
-                    if winCheck(board: currBoard, player: activePlayer) == 1 {
-                        winLabel.text = "Player \(activePlayer) won the game!!"
-                    }
-                    else if winCheck(board: currBoard, player: activePlayer) == 2 {
-                        winLabel.text = "It's a Draw!!"
-                    }
+                    if currBoard[sender.tag - 1] == 0 {
+                        sender.setImage(UIImage(named: "x.png"),for:[])
+                        currBoard[sender.tag - 1] = 2
+                        if winCheck(board: currBoard, player: activePlayer) == 1 {
+                            winLabel.text = "Player \(activePlayer) won the game!!"
+                        }
+                        else if winCheck(board: currBoard, player: activePlayer) == 2 {
+                            winLabel.text = "It's a Draw!!"
+                        }
 
-                    activePlayer = 1;
+                        activePlayer = 1;
+                    }
                 }
             }
             //Play against AI
             else if (numPlayers == 1) {
                 if (activePlayer == 1) {
-                    sender.setImage(UIImage(named: "o.png"),for:[])
-                    currBoard[sender.tag - 1] = 1
-                    if winCheck(board: currBoard, player: activePlayer) == 1 {
-                        winLabel.text = "Player \(activePlayer) won the game!!"
-                    }
-                    else if winCheck(board: currBoard, player: activePlayer) == 2 {
-                        winLabel.text = "It's a Draw!!"
-                    }
-                    activePlayer = 2
-                    let tempBoard = getTempBoard(board: currBoard)
-                    let index = AImove(board: tempBoard)
-                    switch index {
-                    case 0: button0.setImage(UIImage(named: "x.png"), for:[])
-                    case 1: button1.setImage(UIImage(named: "x.png"), for:[])
-                    case 2: button3.setImage(UIImage(named: "x.png"), for:[])
-                    case 3: button4.setImage(UIImage(named: "x.png"), for:[])
-                    case 4: button5.setImage(UIImage(named: "x.png"), for:[])
-                    case 5: button6.setImage(UIImage(named: "x.png"), for:[])
-                    case 6: button7.setImage(UIImage(named: "x.png"), for:[])
-                    case 7: button8.setImage(UIImage(named: "x.png"), for:[])
-                    case 8: button9.setImage(UIImage(named: "x.png"), for:[])
-                    default: button0.setImage(UIImage(named: "x.png"), for:[])
-                    }
-                    currBoard[index] = 2
-                    if winCheck(board: currBoard, player: 2) == 1 {
-                        winLabel.text = "Player 2 won the game!!"
-                    }
-                    else if winCheck(board: currBoard, player: 2) == 2 {
-                        winLabel.text = "It's a Draw!!"
+                    if currBoard[sender.tag - 1] == 0 {
+                        sender.setImage(UIImage(named: "o.png"),for:[])
+                        currBoard[sender.tag - 1] = 1
+                        if winCheck(board: currBoard, player: activePlayer) == 1 {
+                            winLabel.text = "Player \(activePlayer) won the game!!"
+                        }
+                        else if winCheck(board: currBoard, player: activePlayer) == 2 {
+                            winLabel.text = "It's a Draw!!"
+                        }
+                        activePlayer = 2
+                        let tempBoard = getTempBoard(board: currBoard)
+                        let index = AImove(board: tempBoard)
+                        switch index {
+                        case 0: button0.setImage(UIImage(named: "x.png"), for:[])
+                        case 1: button1.setImage(UIImage(named: "x.png"), for:[])
+                        case 2: button3.setImage(UIImage(named: "x.png"), for:[])
+                        case 3: button4.setImage(UIImage(named: "x.png"), for:[])
+                        case 4: button5.setImage(UIImage(named: "x.png"), for:[])
+                        case 5: button6.setImage(UIImage(named: "x.png"), for:[])
+                        case 6: button7.setImage(UIImage(named: "x.png"), for:[])
+                        case 7: button8.setImage(UIImage(named: "x.png"), for:[])
+                        case 8: button9.setImage(UIImage(named: "x.png"), for:[])
+                        default: button0.setImage(UIImage(named: "x.png"), for:[])
+                        }
+                        currBoard[index] = 2
+                        if winCheck(board: currBoard, player: 2) == 1 {
+                            winLabel.text = "Player 2 won the game!!"
+                        }
+                        else if winCheck(board: currBoard, player: 2) == 2 {
+                            winLabel.text = "It's a Draw!!"
+                        }
                     }
                 }
             }
@@ -132,8 +138,7 @@ class SecondViewController: UIViewController {
     
     //checks if either player has won the game
     func winCheck(board: [Int], player: Int) -> Int {
-        if (currBoard[0] == player && currBoard[1] == player && currBoard[2] == player) || (currBoard[3] == player && currBoard[4] == player && currBoard[5] == player) || (currBoard[6] == player && currBoard[7] == player && currBoard[8] == player) || (currBoard[0] == player && currBoard[3] == player && currBoard[6] == player) || (currBoard[1] == player && currBoard[4] == player && currBoard[7] == player) || (currBoard[2] == player && currBoard[5] == player && currBoard[8] == player) || (currBoard[0] == player && currBoard[4] == player && currBoard[8] == player) || (currBoard[2] == player && currBoard[4] == player && currBoard[6] == player) {
-            print(currBoard)
+        if (board[0] == player && board[1] == player && board[2] == player) || (board[3] == player && board[4] == player && board[5] == player) || (board[6] == player && board[7] == player && board[8] == player) || (board[0] == player && board[3] == player && board[6] == player) || (board[1] == player && board[4] == player && board[7] == player) || (board[2] == player && board[5] == player && board[8] == player) || (board[0] == player && board[4] == player && board[8] == player) || (board[2] == player && board[4] == player && board[6] == player) {
             return 1
         }
         else if currBoard[0] != 0 && currBoard[1] != 0 && currBoard[2] != 0 && currBoard[3] != 0 && currBoard[4] != 0 && currBoard[5] != 0 && currBoard[6] != 0 && currBoard[7] != 0 && currBoard[8] != 0 {
@@ -152,7 +157,7 @@ class SecondViewController: UIViewController {
     func checkWinMove(board: [Int], player: Int, moveIndex: Int)->Bool {
         var tempBoard = getTempBoard(board: board)
         tempBoard[moveIndex] = player
-        if winCheck(board: board, player: player) == 1 {
+        if winCheck(board: tempBoard, player: player) == 1 {
             return true
         }
         
@@ -204,6 +209,14 @@ class SecondViewController: UIViewController {
                 return i
             }
         }
+        //prioritze middle
+        for i in 0..<currBoard.count {
+            if i == 4 && currBoard[i] == 0 {
+                activePlayer = 1
+                return i
+            }
+        }
+        
         //then prioritize corners
         for i in 0..<currBoard.count {
             if i == 0 || i == 2 || i == 6 || i == 8 {
@@ -213,13 +226,7 @@ class SecondViewController: UIViewController {
                 }
             }
         }
-        //prioritze middle
-        for i in 0..<currBoard.count {
-            if i == 4 && currBoard[i] == 0 {
-                activePlayer = 1
-                return i
-            }
-        }
+        
         //prioritize edges
         for i in 0..<currBoard.count {
             if i == 1 || i == 3 || i == 5 || i == 7 {
