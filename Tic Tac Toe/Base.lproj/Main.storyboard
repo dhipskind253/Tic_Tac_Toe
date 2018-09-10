@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-1607" y="134"/>
         </scene>
-        <!--Main Menu-->
+        <!--Tic Tac Toe-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tic_Tac_Toe" customModuleProvider="target" sceneMemberID="viewController">
@@ -86,7 +86,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Main Menu" id="RtB-fq-CXO"/>
+                    <navigationItem key="navigationItem" title="Tic Tac Toe" id="RtB-fq-CXO"/>
                     <connections>
                         <outlet property="numPlayer" destination="cTS-ye-EUH" id="urZ-nW-78Z"/>
                     </connections>
@@ -222,7 +222,7 @@
                                     <fragment content=" ">
                                         <attributes>
                                             <font key="NSFont" size="29" name="MarkerFelt-Thin"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -284,6 +284,15 @@
                         <viewLayoutGuide key="safeArea" id="CbW-Tm-hc9"/>
                     </view>
                     <connections>
+                        <outlet property="button0" destination="Czp-bl-q6w" id="m7S-IL-afY"/>
+                        <outlet property="button1" destination="WFd-da-Uwl" id="emp-b7-gmW"/>
+                        <outlet property="button3" destination="3EO-92-d0P" id="cdS-Xq-FJw"/>
+                        <outlet property="button4" destination="FCZ-ec-ztq" id="WDB-eW-nTV"/>
+                        <outlet property="button5" destination="F9M-IM-S5j" id="O5L-AF-wdK"/>
+                        <outlet property="button6" destination="tUX-xi-boV" id="rBz-Y9-4yb"/>
+                        <outlet property="button7" destination="JwQ-BX-F9p" id="9v2-Xh-0kp"/>
+                        <outlet property="button8" destination="bfs-wl-Itu" id="Q8p-x0-voO"/>
+                        <outlet property="button9" destination="Kv0-mm-Lhg" id="6kI-z5-HtX"/>
                         <outlet property="winLabel" destination="Usj-Qv-ejq" id="p2h-HV-7zA"/>
                     </connections>
                 </viewController>
